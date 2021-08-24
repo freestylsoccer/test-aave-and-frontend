@@ -1,4 +1,6 @@
-import business_img from '../images/business-img.png';
+import { Link } from 'react-router-dom';
+import * as ROUTES from '../constants/routes';
+
 import tulum from '../images/fachada_chilpancingo-min.png';
 import los_cabos from '../images/nextiparkC2-min.png';
 import cancun from '../images/haciendasbC2-min.png';
@@ -6,51 +8,60 @@ import cancun from '../images/haciendasbC2-min.png';
 import lime from '../images/lime-min.png';
 import avocado from '../images/avocado-min.png';
 import pineapple from '../images/pineapple-min.png';
-export default function LandingPage () {
+export default function LandingPage ({ requestAccount, account }) {
+    // 0xeD2eF7d8e7E788147a57aA0EE99cBee926451Bb1
     return (
         <div id="content">
             <div>  
                 <main className="bg-black text-gray-200 font-medium">    
                     <div className="bg-gray-900">
                         <header className="max-w-screen-xl mx-auto px-6 lg:px-8 xl:px-4 py-4 lg:py-6 flex justify-between">
-                            <a href="http://ec2-52-15-50-45.us-east-2.compute.amazonaws.com:3000" >
+                            <a href="http://ec2-52-15-50-45.us-east-2.compute.amazonaws.com:3001" >
                                 <span className="sr-only">SaaS landing page</span>
                                 <span className="font-black text-2xl">Pofi Lending Protocol</span>
                             </a>
-                            <nav className="flex items-center space-x-4">                            
+                            <nav className="flex items-center space-x-4">
+                                {account === undefined ? (
+                                    <button onClick={requestAccount} className="border border-gray-700 rounded-lg block text-center py-3 px-5 lg:px-8 font-bold bg-gradient-to-br from-indigo-600 to-indigo-700 hover:from-indigo-500 hover:to-indigo-700  text-white mb-8">connect wallet</button>
+                                ):(
+                                    <span className="border border-gray-700 rounded-lg block text-center py-3 px-5 lg:px-8 font-bold bg-gradient-to-br from-indigo-600 to-indigo-700 hover:from-indigo-500 hover:to-indigo-700  text-white mb-8 truncate text-xs">
+                                        {account.slice(0, 3)+'...'+account.slice(-4)}
+                                    </span>
+                                )}                                
                             </nav>
                         </header>
-                    </div>  
-
-                    <div className="py-6 md:py-6 bg-gradient-to-b from-gray-900 to-black">
-                        <div className="max-w-screen-xl mx-auto px-6 lg:px-8 xl:px-4 grid md:grid-cols-4 xl:grid-cols-5 gap-x-12 lg:gap-x-20">
-                            <div className="order-2 md:order-1 col-span-2 self-center mt-12 md:mt-0">
-                                <h1 className="text-white text-3xl md:text-4xl lg:text-5xl font-bold mb-2 md:mb-4 lg:mb-8">Everybody Investing</h1>
-                                <p className="text-lg xl:text-xl text-gray-200 mb-6 lg:mb-8 xl:mb-10">Smart Invest, from 1 USDT with attractive returns.</p>
-                                <div className="flex space-x-4 mb-6">                                    
-                                    <a className="focus:outline-none inline-block bg-gradient-to-br from-indigo-600 to-indigo-700 hover:from-indigo-500 hover:to-indigo-700 font-semibold rounded-lg py-2 px-5  text-white " href="http://localhost:3001/" target="_blank">Enter App</a>
-                                </div>                                
-                            </div>
-                            <div className="order-1 md:order-2 col-span-2 xl:col-span-3">
-                            <img src={business_img} className="rounded-lg shadow-2xl" alt=""/>
-                        </div>
-                        </div>
                     </div>
-                        
+
                     <div className="py-4">
+                        <div className="container mx-auto px-4 items-center justify-center border-4 border-light-blue-500 border-opacity-25">
+                            <div className="w-full px-2 mt-2">
+                                <div className="rounded-lg overflow-hidden md:flex">
+                                    <div className="w-full">
+                                        <div className="p-4 md:p-5">
+                                            <div className="flex justify-between items-center"></div>
+                                            <div>
+                                                <p className="font-bold text-sm">Para obtener BNB de prueba: <a href="https://testnet.binance.org/faucet-smart" target="_blank">https://testnet.binance.org/faucet-smart</a></p>
+                                                <p className="font-bold text-sm">test USDT address 0x080De04372D5f1E317d492645b923f6286C7eC86</p>
+                                                <a href="https://testnet.bscscan.com/address/0x080De04372D5f1E317d492645b923f6286C7eC86#writeContract" target="_blank">get test USDT https://testnet.bscscan.com/</a>                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                        
                     </div>  
                     
-                    <div class="container mx-auto px-4 items-center justify-center border-4 border-light-blue-500 border-opacity-25">
-                        <div class="w-full px-2 mt-2">
-                            <div class="rounded-lg overflow-hidden md:flex">
-                                <div class="w-full">
-                                    <div class="p-4 md:p-5">
-                                        <div class="flex justify-between items-center"></div>
+                    <div className="container mx-auto px-4 items-center justify-center border-4 border-light-blue-500 border-opacity-25">
+                        <div className="w-full px-2 mt-2">
+                            <div className="rounded-lg overflow-hidden md:flex">
+                                <div className="w-full">
+                                    <div className="p-4 md:p-5">
+                                        <div className="flex justify-between items-center"></div>
                                         <div>
-                                            <p class="font-bold text-xl">Market size</p>
-                                            <div class="flex items-center">
-                                                <div class="flex justify-between items-center">
-                                                    <div class="flex flex-row-reverse justify-end">
+                                            <p className="font-bold text-xl">Market size</p>
+                                            <div className="flex items-center">
+                                                <div className="flex justify-between items-center">
+                                                    <div className="flex flex-row-reverse justify-end">
                                                         <p>$0.00 USD</p>                                   
                                                     </div>
                                                 </div>
@@ -80,18 +91,18 @@ export default function LandingPage () {
                                         <h4 className="text-xl lg:text-2xl font-bold pr-3">Lime</h4>                                        
                                         <p className="text-m">from Veracruz, Mx.</p>                                    
                                     </div>                                
-                                    <a href="http://ec2-52-15-50-45.us-east-2.compute.amazonaws.com:3001" target="_blank" className="border border-gray-700 rounded-lg block text-center py-3 px-5 lg:px-8 font-bold bg-gradient-to-br from-indigo-600 to-indigo-700 hover:from-indigo-500 hover:to-indigo-700  text-white mb-8">Start Investing</a>
+                                    <Link to={ROUTES.GOODS_EXPORT} className="border border-gray-700 rounded-lg block text-center py-3 px-5 lg:px-8 font-bold bg-gradient-to-br from-indigo-600 to-indigo-700 hover:from-indigo-500 hover:to-indigo-700  text-white mb-8">Start Investing</Link>
                                     <ul className="text-gray-200 space-y-4 text-lg">
                                         <li>
                                             <div className="grid grid-cols-2 gap-4">
                                                 <div>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                     </svg>                                                
                                                     <span className="text-xs align-middle"><span className="text-xl font-bold"> 1 USDT</span> min</span>        
                                                 </div>
                                                 <div>                                                
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                                                 </svg>
                                                     <span className="text-xs align-middle"><span className="text-xl font-bold"> 23.7% APY</span></span>        
@@ -107,18 +118,18 @@ export default function LandingPage () {
                                         <h4 className="text-xl lg:text-2xl font-bold pr-3">Pineapple</h4>
                                         <p className="text-m">from Veracruz, Mx.</p>                                    
                                     </div>                                
-                                    <a href="http://ec2-52-15-50-45.us-east-2.compute.amazonaws.com:3001" target="_blank" className="border border-gray-700 rounded-lg block text-center py-3 px-5 lg:px-8 font-bold bg-gradient-to-br from-indigo-600 to-indigo-700 hover:from-indigo-500 hover:to-indigo-700  text-white mb-8">Start Investing</a>
+                                    <Link to={ROUTES.GOODS_EXPORT} className="border border-gray-700 rounded-lg block text-center py-3 px-5 lg:px-8 font-bold bg-gradient-to-br from-indigo-600 to-indigo-700 hover:from-indigo-500 hover:to-indigo-700  text-white mb-8">Start Investing</Link>
                                     <ul className="text-gray-200 space-y-4 text-lg">
                                         <li>
                                             <div className="grid grid-cols-2 gap-4">
                                                 <div>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                     </svg>                                                
                                                     <span className="text-xs align-middle"><span className="text-xl font-bold"> 1 USDT</span> min</span>        
                                                 </div>
                                                 <div>                                                
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                                                 </svg>
                                                     <span className="text-xs align-middle"><span className="text-xl font-bold"> 18.5% APY</span></span>        
@@ -134,18 +145,18 @@ export default function LandingPage () {
                                         <h4 className="text-xl lg:text-2xl font-bold pr-3">Avocado</h4>
                                         <p className="text-m">from Jalisco, Mx.</p>                                    
                                     </div>                                
-                                    <a href="http://ec2-52-15-50-45.us-east-2.compute.amazonaws.com:3001" target="_blank" className="border border-gray-700 rounded-lg block text-center py-3 px-5 lg:px-8 font-bold bg-gradient-to-br from-indigo-600 to-indigo-700 hover:from-indigo-500 hover:to-indigo-700  text-white mb-8">Start Investing</a>
+                                    <Link to={ROUTES.GOODS_EXPORT} className="border border-gray-700 rounded-lg block text-center py-3 px-5 lg:px-8 font-bold bg-gradient-to-br from-indigo-600 to-indigo-700 hover:from-indigo-500 hover:to-indigo-700  text-white mb-8">Start Investing</Link>
                                     <ul className="text-gray-200 space-y-4 text-lg">
                                         <li>
                                             <div className="grid grid-cols-2 gap-4">
                                                 <div>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                     </svg>                                                
                                                     <span className="text-xs align-middle"><span className="text-xl font-bold"> 1 USDT</span> min</span>        
                                                 </div>
                                                 <div>                                                
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                                                 </svg>
                                                     <span className="text-xs align-middle"><span className="text-xl font-bold"> 16.4% APY</span></span>        
@@ -174,25 +185,25 @@ export default function LandingPage () {
                                 <div className="p-4 md:p-8  rounded-lg bg-gray-900">
                                     <img src={tulum} className="object-cover h-80 w-full"></img>
                                     <div className="flex py-2 items-baseline mb-4">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                                         </svg>
                                         <h4 className="text-xl lg:text-2xl font-bold pr-3">Tulum</h4>
                                         <p className="text-m">Quintana Roo, Mx.</p>                                    
                                     </div>                                
-                                    <a href="http://ec2-52-15-50-45.us-east-2.compute.amazonaws.com:3001" target="_blank" className="border border-gray-700 rounded-lg block text-center py-3 px-5 lg:px-8 font-bold bg-gradient-to-br from-indigo-600 to-indigo-700 hover:from-indigo-500 hover:to-indigo-700  text-white mb-8">Start Investing</a>
+                                    <Link to={ROUTES.GOODS_EXPORT} className="border border-gray-700 rounded-lg block text-center py-3 px-5 lg:px-8 font-bold bg-gradient-to-br from-indigo-600 to-indigo-700 hover:from-indigo-500 hover:to-indigo-700  text-white mb-8">Start Investing</Link>
                                     <ul className="text-gray-200 space-y-4 text-lg">
                                         <li>
                                             <div className="grid grid-cols-2 gap-4">
                                                 <div>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                     </svg>                                                
                                                     <span className="text-xs align-middle"><span className="text-xl font-bold"> 1 USDT</span> min</span>        
                                                 </div>
                                                 <div>                                                
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                                                 </svg>
                                                     <span className="text-xs align-middle"><span className="text-xl font-bold"> 15.7% APY</span></span>        
@@ -205,25 +216,25 @@ export default function LandingPage () {
                                 <div className="p-4 md:p-8  rounded-lg bg-gray-900">
                                     <img src={los_cabos} className="object-cover h-80 w-full"></img>
                                     <div className="flex py-2 items-baseline mb-4">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                                         </svg>
                                         <h4 className="text-xl lg:text-2xl font-bold pr-3">Los Cabos</h4>
                                         <p className="text-m">Baja California, Mx.</p>                                    
                                     </div>                                
-                                    <a href="http://ec2-52-15-50-45.us-east-2.compute.amazonaws.com:3001" target="_blank" className="border border-gray-700 rounded-lg block text-center py-3 px-5 lg:px-8 font-bold bg-gradient-to-br from-indigo-600 to-indigo-700 hover:from-indigo-500 hover:to-indigo-700  text-white mb-8">Start Investing</a>
+                                    <Link to={ROUTES.GOODS_EXPORT} className="border border-gray-700 rounded-lg block text-center py-3 px-5 lg:px-8 font-bold bg-gradient-to-br from-indigo-600 to-indigo-700 hover:from-indigo-500 hover:to-indigo-700  text-white mb-8">Start Investing</Link>
                                     <ul className="text-gray-200 space-y-4 text-lg">
                                         <li>
                                             <div className="grid grid-cols-2 gap-4">
                                                 <div>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                     </svg>                                                
                                                     <span className="text-xs align-middle"><span className="text-xl font-bold"> 1 USDT</span> min</span>        
                                                 </div>
                                                 <div>                                                
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                                                 </svg>
                                                     <span className="text-xs align-middle"><span className="text-xl font-bold"> 13.5% APY</span></span>        
@@ -236,25 +247,25 @@ export default function LandingPage () {
                                 <div className="p-4 md:p-8  rounded-lg bg-gray-900">
                                     <img src={cancun} className="object-cover h-80 w-full"></img>
                                     <div className="flex py-2 items-baseline mb-4">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                                         </svg>
                                         <h4 className="text-xl lg:text-2xl font-bold pr-3">Cancún</h4>
                                         <p className="text-m">Quintana Roo, Mx.</p>                                    
                                     </div>                                
-                                    <a href="http://ec2-52-15-50-45.us-east-2.compute.amazonaws.com:3001" target="_blank" className="border border-gray-700 rounded-lg block text-center py-3 px-5 lg:px-8 font-bold bg-gradient-to-br from-indigo-600 to-indigo-700 hover:from-indigo-500 hover:to-indigo-700  text-white mb-8">Start Investing</a>
+                                    <Link to={ROUTES.GOODS_EXPORT} className="border border-gray-700 rounded-lg block text-center py-3 px-5 lg:px-8 font-bold bg-gradient-to-br from-indigo-600 to-indigo-700 hover:from-indigo-500 hover:to-indigo-700  text-white mb-8">Start Investing</Link>
                                     <ul className="text-gray-200 space-y-4 text-lg">
                                         <li>
                                             <div className="grid grid-cols-2 gap-4">
                                                 <div>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                     </svg>                                                
                                                     <span className="text-xs align-middle"><span className="text-xl font-bold"> 1 USDT</span> min</span>        
                                                 </div>
                                                 <div>                                                
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                                                 </svg>
                                                     <span className="text-xs align-middle"><span className="text-xl font-bold"> 18.4% APY</span></span>        
